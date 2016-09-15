@@ -2,16 +2,16 @@ local auxiliar = {}
 
 local char = {
   image = nil,
-  x     = (love.graphics.getWidth() / 2) - 50,
-  y     = (love.graphics.getHeight() - 150),
-  w     = 85,
-  h     = 90
+  x     = (love.graphics.getWidth()) - 100,
+  y     = (love.graphics.getHeight() - 100),
+  w     = 80,
+  h     = 70
 }
 
-local enemyW = 100
-local enemyH = 77
+local enemyW = 85
+local enemyH = 70
 
-local createEnemyTimerMax = 0.4
+local createEnemyTimerMax = 0.6
 local createEnemyTimer    = createEnemyTimerMax
 
 enemies = {}
@@ -28,21 +28,28 @@ local isAlive = true
 local winGame = false
 local CodeCapture=require 'CodeCapture'
 
-local easterEg = easterEgg()
-
 
 function love.keypressed(a,b)
   CodeCapture.keypressed(a)
 end
 
 function easterEgg()
-  love.graphics.print('oi', 20, 10)
+ cheated = true
 end
 
 
 -------------[[ funções principais ]]--------------
 
 function love.load () -- ibagens
+
+  music = love.audio.newSource("encounter.mp3")
+  music:play()
+
+  cheated = false
+  CodeCapture.setCode(CodeCapture.KONAMI, easterEgg)
+
+  math.randomseed(os.time())
+
   if arg[#arg] == "-debug" then require("mobdebug").start() end
 
   waterblock = love.graphics.newImage("images/water-block.png")
@@ -53,21 +60,53 @@ function love.load () -- ibagens
   enemyImg   = love.graphics.newImage('images/enemy-bug.png')
   char.image = love.graphics.newImage('images/chargirl.png')
 
-  for i=0, 23, 1 do
-    newEnemy = { x = math.random()*800, y = math.random()*1000, img = enemyImg } -- inimigos por linha
+
+
+  for i=0, 20, 1 do
+    newEnemy = { x = math.random()*800, y = math.random(500) - love.graphics.getHeight(), img = enemyImg } -- inimigos por linha
     table.insert(enemies, newEnemy)
    end
 
-   CodeCapture.setCode(CodeCapture.KONAMI, easterEg MODE='KONAMI' end)
-
-   MODE='NONE'
 end
+
+
 
 function love.draw()
   local numrows = 6
   local numcols = 7
 
-  love.graphics.print(MODE, 10, 10)
+  if cheated then
+  love.graphics.print('oi', 20, 10, 30)
+  end
+
+  if cheated then
+    char.image = love.graphics.newImage('images/minion.png')
+    sprite = math.random(11)
+    if sprite == 1 then
+      enemyImg = love.graphics.newImage('images/annie.png')
+    elseif sprite == 2 then
+      enemyImg = love.graphics.newImage('images/fiddle.png')
+    elseif sprite == 3 then
+      enemyImg = love.graphics.newImage('images/garen.png')
+    elseif sprite == 4 then
+      enemyImg = love.graphics.newImage('images/jinx.png')
+    elseif sprite == 5 then
+      enemyImg = love.graphics.newImage('images/katarina.png')
+    elseif sprite == 6 then
+      enemyImg = love.graphics.newImage('images/leona.png')
+    elseif sprite == 7 then
+      enemyImg = love.graphics.newImage('images/orianna.png')
+    elseif sprite == 8 then
+      enemyImg = love.graphics.newImage('images/rengar.png')
+    elseif sprite == 9 then
+      enemyImg = love.graphics.newImage('images/teemo.png')
+    elseif sprite == 10 then
+      enemyImg = love.graphics.newImage('images/veigar.png')
+    elseif sprite == 11 then
+      enemyImg = love.graphics.newImage('images/azir.png')
+    end
+
+  end
 
 
   auxiliar.bg(numrows,numcols)
@@ -91,6 +130,8 @@ function love.draw()
     love.graphics.draw(enemy.img, enemy.x, enemy.y)
   end
 end
+
+
 function love.update(dt)
 
   auxiliar.teclado(dt)
@@ -99,7 +140,7 @@ function love.update(dt)
   if createEnemyTimer < 0 then
 	   createEnemyTimer = createEnemyTimerMax
 
-     newEnemy = { x = -100, y = math.random()*1000, img = enemyImg } -- inimigos por linha
+     newEnemy = { x = -100, y = 150 + math.random(300), img = enemyImg } -- inimigos por linha
      table.insert(enemies, newEnemy)
    end
 
@@ -181,11 +222,16 @@ auxiliar.fonte = function() --
 end
 
 auxiliar.restart = function() -- pe lanza
-  char.x = (love.graphics.getWidth() / 2) - 50
-  char.y = (love.graphics.getHeight() - 150)
+  char.x = (love.graphics.getWidth() - 100)
+  char.y = (love.graphics.getHeight() - 100)
   love.graphics.setColor(255, 255, 255)
   enemies = {}
   createEnemyTimer = createEnemyTimerMax
   isAlive = true
   winGame = false
+  for i=0, 20, 1 do
+    newEnemy = { x = math.random()*800, y = math.random(500) - love.graphics.getHeight(), img = enemyImg } -- inimigos por linha
+    table.insert(enemies, newEnemy)
+   end
+
 end
