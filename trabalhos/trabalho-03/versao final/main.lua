@@ -20,8 +20,23 @@ local createEnemyTimerMax = 0.6
 local createEnemyTimer    = createEnemyTimerMax
 
 enemies = {}
+-- Nome: variável “enemies”
+-- Propriedade: implementação
+-- Binding time: compile time
+-- Explicação: A variável é criada
+-- no momento em que o código
+-- é compilado, e espaço é
+-- alocado para ela na memória.
+
 
 function CheckCollision(x1,y1,w1,h1, x2,y2,w2,h2)
+-- Nome: função checkCollision(x1,y1,w1,h1, x2,y2,w2,h2)
+-- Propriedade: implementação
+-- Binding time: compile time
+-- Explicação: A função é criada
+-- no momento em que o código
+-- é compilado, e espaço é
+-- alocado para ela na memória.
   return x1 < x2+w2 and
          x2 < x1+w1 and
          y1 < y2+h2 and
