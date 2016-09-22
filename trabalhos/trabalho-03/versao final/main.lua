@@ -9,6 +9,11 @@ local char = {
 }
 
 local enemyW = 85
+-- Nome: variável "enemyW"
+-- Propriedade: endereço
+-- Binding time: run time
+-- Explicação: Por ser uma variável local, 
+-- seu endereço só é determinado em tempo de execução.
 local enemyH = 70
 
 local createEnemyTimerMax = 0.6
@@ -24,6 +29,12 @@ function CheckCollision(x1,y1,w1,h1, x2,y2,w2,h2)
 end
 
 local deaths  = 0
+-- Nome: palavra reservada "local"
+-- Propriedade: definição de escopo
+-- Binding time: language design time
+-- Explicação: Em luas as variáveis são globais por padrão,
+-- então a palavra “local” foi reservada para a criação
+-- de variáveis com o escopo local.
 local isAlive = true
 local winGame = false
 local CodeCapture=require 'CodeCapture'
@@ -51,6 +62,13 @@ function love.load () -- ibagens
   math.randomseed(os.time())
 
   if arg[#arg] == "-debug" then require("mobdebug").start() end
+-- Nome: palavra reservada “if”
+-- Propriedade: definição de bloco
+-- Binding time: language design time
+-- Explicação: Na criação da linguagem foi decidido que
+-- a palavra reservada “if” significaria uma condicional
+-- que daria início ao bloco de código do que aconteceria
+-- se sua condição fosse realizada.
 
   waterblock = love.graphics.newImage("images/water-block.png")
   grassblock = love.graphics.newImage('images/grass-block.png')
@@ -228,6 +246,12 @@ auxiliar.restart = function() -- pe lanza
   enemies = {}
   createEnemyTimer = createEnemyTimerMax
   isAlive = true
+-- Nome: variável “isAlive”
+-- Propriedade: valor
+-- Binding time: run time
+-- Explicação: O valor que a variável
+-- irá receber só é obtido quando o 
+-- programa é executado.
   winGame = false
   for i=0, 20, 1 do
     newEnemy = { x = math.random()*800, y = math.random(500) - love.graphics.getHeight(), img = enemyImg } -- inimigos por linha
