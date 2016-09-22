@@ -9,11 +9,6 @@ local char = {
 }
 
 local enemyW = 85
--- Nome: variável "enemyW"
--- Propriedade: endereço
--- Binding time: run time
--- Explicação: Por ser uma variável local, 
--- seu endereço só é determinado em tempo de execução.
 local enemyH = 70
 
 local createEnemyTimerMax = 0.6
@@ -107,6 +102,11 @@ end
 function love.draw()
   local numrows = 6
   local numcols = 7
+-- Nome: variável "numcols"
+-- Propriedade: endereço
+-- Binding time: run time
+-- Explicação: Por ser uma variável local, 
+-- seu endereço só é determinado em tempo de execução.
 
   if cheated then
   love.graphics.print('oi', 20, 10, 30)
