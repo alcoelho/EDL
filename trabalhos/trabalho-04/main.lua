@@ -16,7 +16,7 @@ local createEnemyTimer    = createEnemyTimerMax
 
 enemies = {}
 -- Nome: variável “enemies”
--- Propriedade: implementação
+-- Propriedade: endereço
 -- Binding time: compile time
 -- Explicação: A variável é criada
 -- no momento em que o código
@@ -26,7 +26,7 @@ enemies = {}
 
 function CheckCollision(x1,y1,w1,h1, x2,y2,w2,h2)
 -- Nome: função checkCollision(x1,y1,w1,h1, x2,y2,w2,h2)
--- Propriedade: implementação
+-- Propriedade: endereço
 -- Binding time: compile time
 -- Explicação: A função é criada
 -- no momento em que o código
@@ -40,7 +40,7 @@ end
 
 local deaths  = 0
 -- Nome: palavra reservada "local"
--- Propriedade: definição de escopo
+-- Propriedade: semântica
 -- Binding time: language design time
 -- Explicação: Em luas as variáveis são globais por padrão,
 -- então a palavra “local” foi reservada para a criação
@@ -73,7 +73,7 @@ function love.load () -- ibagens
 
   if arg[#arg] == "-debug" then require("mobdebug").start() end
 -- Nome: palavra reservada “if”
--- Propriedade: definição de bloco
+-- Propriedade: semântica
 -- Binding time: language design time
 -- Explicação: Na criação da linguagem foi decidido que
 -- a palavra reservada “if” significaria uma condicional
